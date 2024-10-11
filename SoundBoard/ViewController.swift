@@ -27,9 +27,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let  cell = UITableViewCell()
+        
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         let grabacion = grabaciones[indexPath.row]
+        
+        let minutos = Int(grabacion.duracion) / 60
+        let segundos = Int(grabacion.duracion) % 60
+        let duracionTexto = String(format: "%d:%02d", minutos, segundos)
+        
         cell.textLabel?.text = grabacion.nombre
+        cell.detailTextLabel?.text = duracionTexto
         return cell
     }
     
